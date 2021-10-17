@@ -1,0 +1,32 @@
+{% extends 'base.html' %} {% block title %}Home{% endblock %} {% block content
+%}
+<h1>Welcome to Dizzle</h1>
+<br />
+<div class="card">
+  <p>
+    Welcome to Dizzle! Dizzle is a website created by DillonB07 that will give
+    you a random general knowledge question whenever you want!
+  </p>
+  <p>
+    I decided to work on this as a hobby project, and I'm really happy with how
+    it turned out! If you have any suggestions on how to improve the site, or
+    you have question suggestions then please go to the suggestions page using
+    the button below.
+  </p>
+  <p>
+    I've also created an API for you to use for your own projects! For more
+    information about that, click the API button below.
+  </p>
+
+  <ul>
+    <li><a class="rainbow" href="/question">Get a Question</a></li>
+    <li><a class="button" href="https://qapi.ml">API Information</a></li>
+    <li><a class="button" href="/suggest">Suggestions</a></li>
+  </ul>
+  <p class="text-muted">
+    Created by
+    <a href="https://dillonb07.is-a.dev" target="_blank">@DillonB07</a>
+  </p>
+</div>
+
+{% endblock %}

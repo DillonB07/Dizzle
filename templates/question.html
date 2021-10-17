@@ -1,0 +1,61 @@
+{% extends 'base.html' %} {% block title %}{{question}}{% endblock %} {% block
+content %}
+<h1>{{topic}} Question</h1>
+<div class="card">
+  <h2>{{question}}</h2>
+  <form method="POST" action="/result">
+    {% if type == 'memory' %}
+    <label for="user_answer">
+      <input
+        type="text"
+        name="user_answer"
+        placeholder="Guess here!"
+        required
+      />
+    </label>
+    {% elif type == 'true' %}
+    <label for="user_answer">
+      <ul>
+        <li>True <input type="radio" name="user_answer" value="True" /></li>
+        <li>False <input type="radio" name="user_answer" value="False" /></li>
+      </ul>
+    </label>
+    {% elif type == 'number' %}
+    <label for="user_answer">
+      <input
+        type="number"
+        name="user_answer"
+        placeholder="Guess here!"
+        required
+      />
+    </label>
+    {% elif type == 'multi' %}
+    <ul>
+      <li>
+        <label for="user_answer"
+          >{{option1}}
+          <input type="radio" name="user_answer" value="{{option1}}" />
+        </label>
+      </li>
+      <li>
+        <label for="user_answer"
+          >{{option2}}
+          <input type="radio" name="user_answer" value="{{option2}}" />
+        </label>
+      </li>
+      <li>
+        <label for="user_answer"
+          >{{option3}}
+          <input type="radio" name="user_answer" value="{{option3}}" />
+        </label>
+      </li>
+    </ul>
+    {% endif %}
+    <input type="hidden" name="answer" value="{{answer}}" />
+    <input type="hidden" name="question" value="{{question}}" />
+    <br />
+    <input class="rainbow" id="submit" type="submit" value="Submit" />
+  </form>
+</div>
+<a class="button" href="/">Home</a>
+{% endblock %}

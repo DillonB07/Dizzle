@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% block title %}Result{% endblock %} {% block content %}
+<h1>Result</h1>
+<div class='card'>
+<h2>{{question}}</h2>
+{% if correct == true %}
+<h3>You are correct!</h3>
+The answer was {{answer}}. You put {{user_answer}}!
+{% else %}
+<h3>You are incorrect!</h3>
+The answer was {{answer}}. You put {{user_answer}}!
+{% endif %}
+<br/>
+<a class='rainbow' href='/question'>Get a Question</a>
+</div>
+<a class='button' href='/'>Home</a>
+
+{% endblock %}

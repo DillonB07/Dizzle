@@ -1,0 +1,51 @@
+{% extends 'base.html' %} {% block title %}Suggest{% endblock %}{% block head %}<script src="https://www.google.com/recaptcha/api.js"></script>{% endblock %}
+{% block
+content %}
+<h1>Suggestions</h1>
+<div class="card">
+  <h2>Suggest a question</h2>
+  <form method="POST" action="/suggestion">
+    <label for="name"
+      >Name:
+      <input type="text" name="name" placeholder="Your name" required />
+    </label>
+    <label for="email"
+      >Email:
+      <input
+        type="email"
+        name="email"
+        placeholder="name@example.tld"
+        required
+      />
+    </label>
+    <label for="question"
+      >Question:
+      <input type="text" name="question" placeholder="Your question" required />
+    </label>
+    <label for="answer"
+      >Answer:
+      <input type="text" name="answer" placeholder="Your answer" required
+    /></label>
+    <label for="type"
+      >Type of question:
+      <input type="text" name="type" placeholder="Type of question" required
+    /></label>
+    <label for="topic"
+      >Topic for question:
+      <input type="text" name="topic" placeholder="Topic for question" required
+    /></label>
+    <label for='sensible'>I agree that my question is sensible
+        <input type='checkbox' name='sensible' value='Agreed' required /></label>
+    </label>
+    <label for='accurate'>I agree that my question is accurate
+        <input type='checkbox' name='accurate' value='Agreed' required /></label>
+    </label>
+    <label for='robot'>
+        <div name='robot' class="g-recaptcha" data-sitekey="6Lct9dccAAAAAIOKkp2-vye6Vwz0FE54fKwr2RX8"></div>
+    </label>
+    <br />
+    <input class="rainbow" id="submit" type="submit" value="Submit" />
+  </form>
+</div>
+<a class="button" href="/">Home</a>
+{% endblock %}
