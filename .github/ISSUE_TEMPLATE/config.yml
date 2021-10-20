@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Question Suggestions via Dizzle
+    url: https://dizzle.ml/suggest
+    about: Suggest a question via a form on the Dizzle website
+  - name: Question Suggestions via QAPI
+    url: https://github.com/DillonB07/QAPI/issues/new?assignees=DillonB07&labels=question+suggestion&template=question_suggestion.md&title=%5BQ+Suggestion%5D+-+Question
+    about: Suggest a question via a GitHub issue on the QAPI repository
+  - name: GitHub Discussions
+    url: https://github.com/DillonB07/Dizzle/discussions
+    about: Ask and answer questions here.
