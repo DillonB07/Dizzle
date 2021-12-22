@@ -64,12 +64,12 @@ def random_question():
 
 @app.route('/question/<topic>')
 def question(topic: str):
-    if topic == 'random':
+    if topic.lower() == 'random':
         type, topic, question, answer, option1, option2, option3, ok = get_question(
         )
     else:
         type, topic, question, answer, option1, option2, option3, ok = get_question(
-            topic)
+            topic.lower())
 
     if ok:
 

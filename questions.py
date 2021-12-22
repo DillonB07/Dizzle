@@ -3,7 +3,7 @@ from requests import get
 
 def get_question(topic: str = 'random'):
     url = 'https://qapi-api.ml'
-    if topic != 'random':
+    if topic.lower() != 'random':
         response = get(f'{url}/topic/{topic}/random-question').json()
     else:
         response = get(f'{url}/random-question').json()
