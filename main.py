@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, abort, flash, url_for
-from questions import get_question
+from questions import get_question, get_answer
 from utils import Email, is_human
 import os
 
@@ -65,10 +65,10 @@ def random_question():
 @app.route('/question/<topic>')
 def question(topic: str):
     if topic.lower() == 'random':
-        type, topic, question, answer, option1, option2, option3, ok = get_question(
+        type, topic, question, id, option1, option2, option3, ok = get_question(
         )
     else:
-        type, topic, question, answer, option1, option2, option3, ok = get_question(
+        type, topic, question, id, option1, option2, option3, ok = get_question(
             topic.lower())
 
     if ok:
@@ -80,7 +80,7 @@ def question(topic: str):
                                option1=option1,
                                option2=option2,
                                option3=option3,
-                               answer=answer)
+                               id=id)
 
     else:
         abort(404)
@@ -91,7 +91,8 @@ def check_question():
     if request.method == 'POST':
         question = request.form['question']
         user_answer = request.form['user_answer']
-        answer = request.form['answer']
+        id = request.form['id']
+        answer = get_answer(int(id))
         if user_answer.lower() == answer.lower():
             return render_template('result.html',
                                    question=question,
