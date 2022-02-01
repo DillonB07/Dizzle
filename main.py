@@ -92,15 +92,18 @@ def check_question():
         question = request.form['question']
         user_answer = request.form['user_answer']
         id = request.form['id']
+        topic = request.form['topic']
         answer = get_answer(int(id))
         if user_answer.lower() == answer.lower():
             return render_template('result.html',
+                                   topic=topic,
                                    question=question,
                                    user_answer=user_answer,
                                    answer=answer,
                                    correct=True)
         else:
             return render_template('result.html',
+                                   topic=topic,
                                    question=question,
                                    user_answer=user_answer,
                                    answer=answer,
