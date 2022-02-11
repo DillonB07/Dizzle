@@ -32,14 +32,11 @@ def get_question(topic: str = 'random'):
     return type, topic, question, id, option1, option2, option3, ok
 
 def get_answer(id: int):
-    url = 'https://qapi-api.ml'
-
-    response = get(f'{url}/question?id={id}').json()
+    response = get(f'https://qapi-api.ml/question?id={id}').json()
 
 
     try:
-        answer = response['answer']
-        return answer
+        return response['answer']
     except Exception as e:
         print(e)
         return get_answer(id)
