@@ -24,37 +24,37 @@ def suggest():
 
 @app.route('/suggestion', methods=['GET', 'POST'])
 def suggestion():
-    if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        question = request.form['question']
-        answer = request.form['answer']
-        type = request.form['type']
-        topic = request.form['topic']
-        sensible = request.form['sensible']
-        accurate = request.form['accurate']
-        captcha_response = request.form['g-recaptcha-response']
+    if request.method != 'POST':
+        return
 
-        if not is_human(captcha_response):
-            print('Bot attempt!')
-            flash(
-                'Please complete the reCAPTCHA to confirm that you\'re not a robot',
-                category='error')
-            return redirect(url_for('suggest'))
+    name = request.form['name']
+    email = request.form['email']
+    question = request.form['question']
+    answer = request.form['answer']
+    type = request.form['type']
+    topic = request.form['topic']
+    sensible = request.form['sensible']
+    accurate = request.form['accurate']
+    captcha_response = request.form['g-recaptcha-response']
 
-        content = f'Name: {name}\nEmail: {email}\nQuestion: {question}\nAnswer: {answer}\nType: {type}\nTopic: {topic}'
-
-        if sensible == 'Agreed' and accurate == 'Agreed':
-            email = Email()
-            sent = email.sendEmail(content)
-
-            if sent:
-                flash('Suggestion submitted successfully', category='success')
-            else:
-                flash('Error submitting suggestion. Please try again later',
-                      category='error')
-
+    if not is_human(captcha_response):
+        print('Bot attempt!')
+        flash(
+            'Please complete the reCAPTCHA to confirm that you\'re not a robot',
+            category='error')
         return redirect(url_for('suggest'))
+
+    content = f'Name: {name}\nEmail: {email}\nQuestion: {question}\nAnswer: {answer}\nType: {type}\nTopic: {topic}'
+
+    if sensible == 'Agreed' and accurate == 'Agreed':
+        email = Email()
+        if sent := email.sendEmail(content):
+            flash('Suggestion submitted successfully', category='success')
+        else:
+            flash('Error submitting suggestion. Please try again later',
+                  category='error')
+
+    return redirect(url_for('suggest'))
 
 
 @app.route('/question')
